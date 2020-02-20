@@ -1,0 +1,16 @@
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    links:
+      - db:mongodb
+    container_name: petstore_api_web
+    depends_on:
+      - db
+    volumes:
+      - ./:/pets-api
+  db:
+    image: mongo:3.0.2
+    container_name: petstore_api_db
